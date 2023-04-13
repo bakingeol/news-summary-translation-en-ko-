@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+
+    <title>구름 3조 요약 및 번역</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords"
+        content="번역, 번역기, 번역서비스, 영어번역기, 영한번역기, 한영번역기, 영문번역, 한국어번역, translate, translation, Korean English translator, Korean translator, language translation" />
+    <meta name="description" content="카카오의 기계 번역 서비스, 영어, 한국어 번역, 번역톡, 어학사전 제공." />
+    <meta property="og:url" content="https://translate.kakao.com/" />
+
+    <meta name="svcdomain" content="translate.kakao.com" />
+
+
+    <meta name="tiara:deployment" content="production" />
+
+    <meta name="tiara:page" content="translator" />
+    <meta name="tiara:section" content="translator" />
+
+
+
+    <!--<![endif]-->
+
+
+    <link rel="stylesheet" type="text/css" href="//t1.daumcdn.net/translator/cssjs/83e27c8/css/translator.css" />
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
+    <style>
+        .col {
+            font-size: 0.8em;
+            /* 작게 출력할 글자 크기 설정 */
+        }
+
+
+        .box_translation {
+            font-size: 0.4em;
+
+            /* overflow: auto; */
+
+        }
+    </style>
+</head>
+
+<body data-init="translator,audioPlayer" data-context-root="/" data-device-type="PC" data-lang="auto" data-os="windows"
+    data-browser="chrome" data-browser-version="111.0.0.0">
+
+
+
+
+
+    <div id="kakaoWrap" class=" ">
+        <div id="kakaoHead" class="k_head" data-tiara-layer="head">
+            <h1>
+                뉴스 기사 요약 및 번역 서비스
+            </h1>
+        </div>
+
+
+        <hr class="hide" />
+        <div id="kakaoContent" class="cont_translation">
+
+            <form class="row g-2 justify-content-center">
+                <div class="col-auto">
+                    <label for="staticEmail2" class="visually-hidden">기사 URL</label>
+                    <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="기사 URL을 입력하세요.">
+                </div>
+                <div class="col-auto">
+                    <label for="inputUrl2" class="visually-hidden">Url</label>
+                    <input class="form-control" id="inputUrl2" placeholder="url 주소 입력">
+                </div>
+                <div class="col-auto">
+                    <!-- <button type="submit" class="btn btn-secondary mb-3" onclick="newsUrl_Summary()">전송</button> -->
+                    <button type="button" class="btn btn-secondary mb-3" onclick="newsUrl()">전송</button>
+                </div>
+            </form>
+
+            <div id="cMain">
+                <div id="mArticle">
+                    <h2 class="screen_out">번역 내역</h2>
+                    <div id="translateArea" class="area_translation">
+                        <div id="languageSelector" class="wrap_opt row" data-query-lang="en" data-result-lang="kr"
+                            data-tiara-layer="language-selector">
+                            <div class="container text-center" id="url_news">
+                                <div class="row">
+                                    <div class="col">
+                                        요약 결과
+                                    </div>
+                                    <div class="col">
+                                        번역 결과
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="view_translation">
+                            <div id="queryBox" name="box" class="box_translation" data-tiara-layer="query-box"
+                                style="height: 1000px;">
+                                <div class="box_tf">
+                                    <label for="query" class="lab_tf"> 요약 버튼을 누른 후, 최대 3분 동안 기다려주세요. </label>
+                                    <div contenteditable="true" spellcheck="true" id="query" class="tf_translation"
+                                        style="display:block"></div>
+                                </div>
+
+                                <div id="queryButtons" name="controlButtons" class="append_translation">
+                                    <div class="wrap_btn">
+                                        <button type="button" class="btn btn-secondary mb-3"
+                                            onclick="news_Summary()">요약하기</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="queryBox2" name="box" class="box_translation" data-tiara-layer="query-box"
+                                style="height: 1000px;">
+                                <div class="box_tf">
+                                    <label for="query" class="lab_tf"> 번역 버튼을 누룬 후,최대 3분 동안 기다려주세요. </label>
+                                    <div contenteditable="true" spellcheck="true" id="query" class="tf_translation"
+                                        style="display:block"></div>
+                                </div>
+
+                                <div id="queryButtons" name="controlButtons" class="append_translation">
+                                    <div class="wrap_btn">
+                                        <button type="button" class="btn btn-secondary mb-3"
+                                            onclick="translation_news()">번역하기</button>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+
+
+        <hr class="hide" />
+        <div id="kakaoFoot" class="k_foot" data-tiara-layer="foot">
+            <h2 class="screen_out">서비스 안내 및 약관</h2>
+            <div class="info_policy">
+                <a href="https://kakao.ai/kakaoi" target="_blank" class="link_policy"
+                    data-tiara-action-name="Kakao i 소개 링크 클릭">아아아 </a>
+                <span class="txt_bar">|</span>
+                <a href="https://www.kakao.com/policy/terms?type=ts&amp;lang=ko" target="_blank" class="link_policy"
+                    data-tiara-action-name="서비스 약관 클릭">서비스 약관</a>
+                <span class="txt_bar">|</span>
+                <a href="https://cs.kakao.com/helps?service=116" target="_blank" class="link_policy"
+                    data-tiara-action-name="서비스 도움말 클릭">서비스 도움말</a>
+                <span class="txt_bar">|</span>
+                <a href="https://cs.kakao.com/requests?locale=ko&amp;service=116" target="_blank" class="link_policy"
+                    data-tiara-action-name="문의하기 클릭" data-tiara-layer="cs">문의하기</a>
+            </div>
+            <small class="txt_copy">Copyright &copy; <a href="https://www.kakaocorp.com/" target="_blank"
+                    class="link_corp">Kakao Corp.</a> All rights reserved.</small>
+            <p class="txt_service">test</p>
+        </div>
+    </div><!-- //kakaoWrap -->
+
+
+    <div id="dimmedLayer" class="dimmed_layer hide"></div>
+    <div id="noticeLayer" class="layer_notice hide" data-tiara-layer="notice-layer">
+        <div class="layer_head">
+            <strong class="screen_out">카카오 i 번역 서비스 기능안내</strong>
+        </div>
+        <div class="layer_body">
+            <div class="wrap_slide">
+                <ul class="list_slide" style="left:0px">
+                    <li><img src="https://t1.daumcdn.net/contents_img/img-contents/dic/translation/pc/img_notice01_rtn.jpg"
+                            width="800" height="500" class="thumb_g" alt="19개의 언어간 번역으로 새로워진 kakao i 번역을 만나보세요!"></li>
+                    <li><img src="https://t1.daumcdn.net/contents_img/img-contents/dic/translation/pc/img_notice02_rtn.jpg"
+                            width="800" height="500" class="thumb_g"
+                            alt="예사말/높임말을 설정하는 &#39;문체 옵션&#39;을 통해 다채롭게 번역해보세요."></li>
+                    <li><img src="https://t1.daumcdn.net/contents_img/img-contents/dic/translation/pc/img_notice03_rtn.jpg"
+                            width="800" height="500" class="thumb_g"
+                            alt="드래그로 사전검색도 한번에! 마우스오버로 &#39;단어매칭&#39;까지 만나보세요."></li>
+                </ul>
+                <div class="paging_slide">
+                    <span class="link_page">1</span>
+                    <span class="link_page">2</span>
+                    <span class="link_page">3</span>
+                </div>
+                <button type="button" class="btn_slide btn_prev" data-tiara-action-name="이전 버튼 클릭"><span
+                        class="ico_translation">이전</span></button>
+                <button type="button" class="btn_slide btn_next" data-tiara-action-name="다음 버튼 클릭"><span
+                        class="ico_translation">다음 </span></button>
+            </div>
+        </div>
+        <div class="layer_foot">
+            <a href="#none" class="btn_close" data-tiara-action-name="닫기 버튼 클릭"><span
+                    class="ico_translation">닫기</span></a>
+        </div>
+    </div>
+    <div id="notificationLayer" class="layer_translation hide" data-tiara-layer="notification-layer"></div>
+    <div id="confirmLayer" class="layer_translation hide" data-tiara-layer="confirm-layer"></div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
+    <script>
+
+        let news_data = [];
+        let title
+        let content
+        let summary_content
+        let translationResult
+        function news_Summary() {
+            const formData = new FormData();
+            formData.append("summary", content);
+            console.log(content)
+            fetch('/newsSummary', { method: "POST", body: formData }).then((res) => res.json()).then((data) => {
+                $('#queryBox').empty()
+                summary_content = data['summaryResult']
+
+                console.log(summary_content)
+                let temp_content =
+                    `<div class="box_tf">
+                                    <label for="query" class="lab_tf"> ${summary_content} </label>
+                                    <div contenteditable="true" spellcheck="true" id="query" class="tf_translation"
+                                        style="display:block"></div>
+                                </div>
+
+                                <div id="queryButtons" name="controlButtons" class="append_translation">
+                                    <div class="wrap_btn">
+                                        <button type="button" class="btn btn-secondary mb-3"
+                                            onclick="news_Summary()">요약하기</button>
+                                    </div>
+                                </div>`
+                $('#queryBox').append(temp_content)
+
+            })
+        }
+
+        function newsUrl() {
+            urlGet = $("#inputUrl2").val();
+            const formData = new FormData();
+            formData.append("urlGet", urlGet);
+            fetch('/urlGet', { method: "POST", body: formData }).then((res) => res.json()).then((data) => {
+
+                $('#url_news').empty()
+                title = data['news_summary'][0]
+                content = data['news_summary'][1]
+                console.log(content)
+                let temp_title = `<div class="container text-center" id="url_news">
+                                <div class="row">
+                                    <div class="col">
+                                        뉴스 요약 결과 : ${title}
+                                    </div>                                
+                                    <div class="col">
+                                        번역 결과
+                                    </div>
+                                </div>
+                              </div>`
+                $('#url_news').append(temp_title)
+
+            })
+
+        }
+
+
+
+        function translation_news() {
+            const formData = new FormData();
+            formData.append("translation", summary_content);
+            console.log(summary_content)
+
+            fetch('/newsTranslation', { method: "POST", body: formData }).then((res) => res.json()).then((data) => {
+                $('#queryBox2').empty()
+                translationResult = data['translationResult']
+
+                console.log(translationResult)
+                let temp_content =
+                    `<div class="box_tf">
+                                    <label for="query" class="lab_tf"> ${translationResult} </label>
+                                    <div contenteditable="true" spellcheck="true" id="query" class="tf_translation"
+                                        style="display:block"></div>
+                                </div>
+
+                                <div id="queryButtons" name="controlButtons" class="append_translation">
+                                    <div class="wrap_btn">
+                                        <button type="button" class="btn btn-secondary mb-3"
+                                            onclick="translation_news()">번역하기</button>
+                                    </div>
+                                </div>`
+                $('#queryBox2').append(temp_content)
+
+            })
+        }
+
+
+
+
+    </script>
+
+
+</body>
+
+</html>

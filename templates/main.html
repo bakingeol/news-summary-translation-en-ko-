@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- font-awesome 추가 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>시간을 아끼자</title>
+
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Sunflower:wght@500&display=swap');
+
+        * {
+            font-family: 'Jua', sans-serif;
+            ;
+        }
+
+        #navBar {
+            background-color: #CCCCCC;
+            padding: 10px 150px;
+            font-size: 20px;
+        }
+
+        .mytitle {
+            width: 100%;
+            height: 150px;
+
+            color: black;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #koreamap {
+            width: 600px;
+            height: 800px;
+        }
+
+        .main {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .main>div {
+            width: 800px;
+            height: 1000px;
+        }
+
+        #searchBox {
+            margin-bottom: 50px;
+
+        }
+
+        #search {
+            width: 100%;
+            height: 100%;
+        }
+
+        #allList {
+            margin-top: 100px;
+        }
+
+        #findList {
+            height: max-content;
+
+        }
+
+        #searchList {
+            border: 1px solid rgba(0, 0, 0, 0.2);
+        }
+
+        #getList {
+            border: 1px solid rgba(0, 0, 0, 0.2);
+        }
+
+        #listTr {
+            height: 20px !important;
+
+        }
+
+        #listBody tr:hover {
+            cursor: pointer;
+        }
+
+        #marketOpen {
+            margin: 50px 10px;
+        }
+
+        .pagination {
+            background: #333;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .pagination i {
+            color: #fff;
+            font-size: 1.2em;
+        }
+
+        #pageNum {
+            padding: 0;
+            margin: 0 2rem;
+            list-style-type: none;
+            display: flex;
+        }
+
+        #pageNum li a {
+            color: #fff;
+            padding: .5rem 1rem;
+            text-decoration: none;
+            opacity: .7;
+
+        }
+
+        #pageNum li a:hover {
+            opacity: 1;
+        }
+
+        #pageNum li a.active {
+            opacity: 1;
+            background: #fff;
+            color: #333;
+        }
+
+        #products {
+            width: 100%;
+            height: 500px;
+
+            /* display: flex;
+            flex-direction: column;
+            justify-content: flex-start; */
+        }
+
+        .col1 {
+            width: 20%;
+        }
+
+        .col2 {
+            width: 20%;
+        }
+
+        .col3 {
+            width: 60%;
+        }
+
+        .pageBtn {
+            width: fit-content;
+            margin: auto;
+        }
+
+        .vertical {
+            writing-mode: vertical-rl;
+            transform: rotate(90deg);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="mainList">
+
+
+        <main class="mytitle">
+            <h1>뉴스요약서비스 이름 모르겠다</h1>
+
+        </main>
+    </div>
+
+    <div class="main row 2">
+
+        <div id="allList">
+            <div>
+
+                <body style="text-align: center;">
+                    <p class="fs-1"> 오늘의 기사 </p>
+                </body>
+                <div class="row" id="findList">
+                    <div class="col-sm-9" id="box">
+                        <table class="table table-hover" >
+                            <div id="getnews"> 
+                            <h1 class="display-5 fw-bold"> 제목 </h1>
+                            <p class="col-md-8 fs-4"> 기사 내용 </p>
+                        </div>
+                        </table>
+
+                        <div class="row 2 gap-2">
+                            <button type="button" class="btn btn-secondary btn-lg">내 기사에 담기</button>
+                            <button type="button" class="btn btn-secondary btn-lg">요약하기</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+
+
+        <div id="allList">
+            <div>
+
+                <p class="fs-1"> 요약 결과 </p>
+
+                <div class="col-sm-9" id="getList">
+                    <table class="table table-hover" id="products">
+                        <colgroup>
+                            <col class="col1">
+                            <col class="col2">
+                            <col class="col3">
+                        </colgroup>
+                        <caption>
+                            <form action="" id="setRows">
+                                <input type="hidden" name="rowPerPage" value="5">
+                            </form>
+                        </caption>
+                        <thead>
+
+                        </thead>
+                        <tbody id="listBody">
+                            <tr id="listTr">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function () {
+            show_news();
+        });
+
+        function show_news() {
+            fetch('/newsGet').then(res => res.json()).then(data => {
+               
+                let rows = data['result']
+                console.log(rows+"dkdk")
+                $('#getnews').empty()
+                rows.forEach((a) => {
+                    let name = a
+                    console.log(name)
+                    let temp_html = `<table class="table table-hover" id="getnews">
+                                        <h1 class="display-5 fw-bold"> ${name} </h1>
+                                        <p class="col-md-8 fs-4"> 기사 내용${name} </p>
+                                    </table>`
+
+                    $('#getnews').append(temp_html)
+                });
+            })
+        }
+
+
+
+
+    </script>
+</body>
+
+</html>
